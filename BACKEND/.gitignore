@@ -1,0 +1,10 @@
+bin
+lib
+include
+.env
+pyvenv.cfg
+install.sh
+share
+lib64
+**/__pycache__
+installOnMac.sh
