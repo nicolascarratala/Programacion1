@@ -2,6 +2,7 @@ from flask import request, Blueprint
 from .. import db
 from main.models import UserModel
 from flask_jwt_extended import create_access_token
+from main.mail.functions import sendMail
 
 # Blueprint to access autentication methods
 auth = Blueprint('auth', __name__, url_prefix='/auth')
@@ -35,12 +36,10 @@ def login():
 @auth.route('/register', methods=['POST'])
 def register():
 
-    # Get USer
     user = UserModel.from_json(request.get_json())
+    exists = db.session.query(UserModel).filter(UserModel.email == user.email).scalar() is not None
+    
 
-    # Verify if email exist in db
-    exists = db.session.query(UserModel).filter(
-        UserModel.email == user.email).scalar() is not None
 
     if exists:
         return 'Duplicated mail', 409
@@ -49,6 +48,8 @@ def register():
             # Add User to db
             db.session.add(user)
             db.session.commit()
+            sent = sendMail([user.email],"Welcome!",'register',user = user)
+        
         except Exception as error:
             db.session.rollback()
             return str(error), 409
