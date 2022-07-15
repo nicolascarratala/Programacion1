@@ -1,18 +1,15 @@
 # Programming 1 #
 ### - Group I: ###
-  - Abel Carrizo
   - Nicolas Carratala
-  - Nicolas Panella
   - Mariana Giacconi
 
-# Happy way for programmers:
-## This is for run the app easy :
 
 1. Installation of project: 
 
 ```bash
 ./install.sh
 ```
+if you want to run this command on mac yo can erase the 2 first lines
 
 2. Boot of project:
 
