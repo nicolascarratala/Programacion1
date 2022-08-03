@@ -17,7 +17,7 @@ if you want to run this command on mac yo can erase the 2 first lines
 ./boot.sh
 ```
 
-2. Open insomniac:
+3. Open insomniac:
 
 Import insomniac .json file on insomniac
 
