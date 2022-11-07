@@ -1,0 +1,30 @@
+{
+  "/users": {
+      "target": "http://127.0.0.1:7000",
+      "secure": false,
+      "logLevel": "debug",
+      "pathRewrite": {
+          "^/users": "/users"
+      }
+},
+
+"/loginauth": {
+  "target": "http://127.0.0.1:7000",
+  "secure": false,
+  "logLevel": "debug",
+  "pathRewrite": {
+      "^/loginauth": "/auth/login"
+  }
+},
+  
+
+
+  "/poems": {
+    "target": "http://127.0.0.1:7000",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+        "^/poems": "/poems"
+    }
+  }
+}
