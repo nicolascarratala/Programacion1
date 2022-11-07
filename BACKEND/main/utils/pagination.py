@@ -1,6 +1,5 @@
 # returns True if number is even
 def generalPagination(request):
-
     pageCongf = {"page": 0, "per_page": 20}
 
     if request.get_json():
@@ -10,5 +9,5 @@ def generalPagination(request):
                 pageCongf["page"] = int(value)
             if key == 'per_page':
                 pageCongf["per_page"] = int(value)
-    
+                  
     return {"page": pageCongf["page"], "per_page": pageCongf["per_page"]}

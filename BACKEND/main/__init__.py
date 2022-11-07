@@ -4,69 +4,63 @@ from dotenv import load_dotenv
 from flask_restful import Api
 from flask_sqlalchemy import SQLAlchemy
 from flask_jwt_extended import JWTManager
-
-# Initialize Flask RESTful, SQLAlchemy, JWTManager
-api = Api()
-db = SQLAlchemy()
-jwt = JWTManager()
+from flask_mail import Mail
 
 
+api = Api() #Inicializa API de Flask Restful
+db = SQLAlchemy() #Inicializa SQLAlchemy
+jwt = JWTManager() #Inicializa JWTManager
+mailsender = Mail() #Inicializa FlaskMail
+
+# Método que inicializará todos los módulos y devolverá la aplicación
 def create_app():
+    app = Flask(__name__) #Inicializa Flask
+    mail = Mail(app)
+    mail.init_app(app)
 
-    # Initialize Flask
-    app = Flask(__name__)
+    load_dotenv() #Carga las variables de entorno
 
-    # Load .env file
-    load_dotenv()
+    #Si no existe el archivo de base de datos crearlo (solo válido si se utiliza SQLite)
+    if not os.path.exists(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME')):
+        os.mknod(os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME'))
 
-    # get .env database path, database name, expires token time and secret key
-    env_path = os.getenv('DATABASE_PATH')
-    env_name = os.getenv('DATABASE_NAME')
-    token_expires = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES'))
-    secret_key = os.getenv('JWT_SECRET_KEY')
-
-    # if path exist get true
-    db_path = os.path.exists(env_path + env_name)
-
-    # If db file dont exist create one
-    if not db_path:
-        os.system(f'touch ${env_path}${env_name}')
-
-    # dont save db changes
-    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-
-    # Url config BD
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + env_path + env_name
-
-    # Init db
+    app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False #No almacena en memoria todos los cambios de la DB
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////'+os.getenv('DATABASE_PATH')+os.getenv('DATABASE_NAME') #Url de configuración de base de datos 
+    
     db.init_app(app)
 
-    # Import resources then db initialization
     import main.resources as resources
 
-    # Api endpoints Resources
-    api.add_resource(resources.UsersResource, '/users')  # Users
-    api.add_resource(resources.UserResource, '/user/<id>')  # Users by id
-    api.add_resource(resources.PoemsResource, '/poems')  # Poems
-    api.add_resource(resources.PoemResource, '/poem/<id>')  # Poems by id
-    api.add_resource(resources.ReviewsResource, '/reviews')  # Reviews
-    api.add_resource(resources.ReviewResource, '/review/<id>')  # Reviews by id
+    #Carga a la API los recursos
+    #Todos los recursos
+    api.add_resource(resources.PoemsResource, '/poems')
+    api.add_resource(resources.UsersResource, '/users')
+    api.add_resource(resources.ReviewsResource, '/reviews')
+    #Recursos por ID
+    api.add_resource(resources.PoemResource, '/poem/<id>')
+    api.add_resource(resources.UserResource, '/user/<id>')
+    api.add_resource(resources.ReviewResource, '/review/<id>')
+    
+    api.init_app(app) #Cargar la aplicacion en la API de Flask Restful
 
-    # Init api
-    api.init_app(app)
+    app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY') #Cargar clave secreta
+    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRES')) #Cargar tiempo de expiración de los tokens
 
-    # Cargar clave secreta
-    app.config['JWT_SECRET_KEY'] = secret_key
-
-    # Get token expires time
-    app.config['JWT_ACCESS_TOKEN_EXPIRES'] = token_expires
-
-    # Init jwt
     jwt.init_app(app)
 
     from main.auth import routes
 
-    # Import blueprint for routes.auth
-    app.register_blueprint(routes.auth)
+    app.register_blueprint(routes.auth) #Import blueprint for routes.auth
+
+    #Configuracion de mail
+    app.config['MAIL_HOSTNAME'] = os.getenv('MAIL_HOSTNAME')
+    app.config['MAIL_SERVER'] = os.getenv('MAIL_SERVER')
+    app.config['MAIL_PORT'] = os.getenv('MAIL_PORT')
+    app.config['MAIL_USE_TLS'] = os.getenv('MAIL_USE_TLS')
+    app.config['MAIL_USERNAME'] = os.getenv('MAIL_USERNAME')
+    app.config['MAIL_PASSWORD'] = os.getenv('MAIL_PASSWORD')
+    app.config['FLASKY_MAIL_SENDER'] = os.getenv('FLASKY_MAIL_SENDER')
+
+    mailsender.init_app(app)
 
     return app

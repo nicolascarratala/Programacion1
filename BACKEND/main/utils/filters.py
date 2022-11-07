@@ -1,7 +1,5 @@
-
 # returns True if number is even
 def reviewFilters(request, ReviewModel, reviews):
-
     if request.get_json():
         filters = request.get_json().items()
         for key, value in filters:
@@ -13,9 +11,7 @@ def reviewFilters(request, ReviewModel, reviews):
                 reviews = reviews.filter(ReviewModel.userID == str(value))
     return reviews
 
-
 def poemFilters(request, PoemsModel, poems):
-
     if request.get_json():
         filters = request.get_json().items()
         for key, value in filters:
@@ -25,9 +21,7 @@ def poemFilters(request, PoemsModel, poems):
                 poems = poems.filter(PoemsModel.userID == int(value))
     return poems
 
-
 def userFilters(request, UserModel, users):
-
     if request.get_json():
         filters = request.get_json().items()
         for key, value in filters:

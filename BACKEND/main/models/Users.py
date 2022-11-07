@@ -9,10 +9,8 @@ class Users(db.Model):
     email = db.Column(db.String(100), nullable=False)
     password = db.Column(db.String(100), nullable=False)
     admin = db.Column(db.Boolean, default=False, nullable=False)
-    poems = db.relationship(
-        'Poems', back_populates="user", cascade="all, delete-orphan")
-    reviews = db.relationship(
-        'Review', back_populates="user", cascade="all, delete-orphan")
+    poems = db.relationship('Poems',back_populates ="user", cascade="all, delete-orphan")
+    reviews = db.relationship('Review', back_populates="user", cascade="all, delete-orphan")
 
     # region Functions
 
@@ -65,16 +63,26 @@ class Users(db.Model):
 
         }
         return user_json
-
-    def to_json_complete(self):
-        """This function obtains all information about Users and return a JSON object
+    
+    def to_json_short(self):
+        """This function obtains Users and return a JSON object
 
         Keyword arguments:
         self
 
         Return: json
         """
+        user_json = {
+            'id': self.id,
+            'firstname': str(self.firstname),
+            'admin': self.admin,
 
+
+        }
+        return user_json
+
+
+    def to_json_complete(self):
         poems = [poem.to_json() for poem in self.poems]
 
         user_json = {
@@ -83,9 +91,7 @@ class Users(db.Model):
             'email': self.email,
             'admin': self.admin,
             'poems': poems,
-            'count_poems': len(self.poems),
-
-
+            'count_poems':len(self.poems)
         }
         return user_json
 

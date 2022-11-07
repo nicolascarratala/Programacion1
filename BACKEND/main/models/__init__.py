@@ -1,3 +1,3 @@
-from .Users import Users as UserModel
-from .Poems import Poems as PoemsModel
-from .Review import Review as ReviewModel
+from .poems import Poems as PoemsModel
+from .Users import Users as UsersModel
+from .review import Review as ReviewModel

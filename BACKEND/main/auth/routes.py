@@ -1,18 +1,18 @@
 from flask import request, Blueprint
 from .. import db
-from main.models import UserModel
+from main.models import UsersModel
 from flask_jwt_extended import create_access_token
+from main.mail.functions import sendMail
 
-# Blueprint to access autentication methods
+#Blueprint to access autentication methods
 auth = Blueprint('auth', __name__, url_prefix='/auth')
-
 
 @auth.route('/login', methods=['POST'])
 def login():
 
     # Search User whit email
-    user = db.session.query(UserModel).filter(
-        UserModel.email == request.get_json().get("email")).first_or_404()
+    user = db.session.query(UsersModel).filter(UsersModel.email == request.get_json().get("email")).first_or_404()
+
 
     # Validate Password
     if user.validate_pass(request.get_json().get("password")):
@@ -31,16 +31,11 @@ def login():
     else:
         return 'Incorrect password', 401
 
-
 @auth.route('/register', methods=['POST'])
 def register():
-
-    # Get USer
-    user = UserModel.from_json(request.get_json())
-
-    # Verify if email exist in db
-    exists = db.session.query(UserModel).filter(
-        UserModel.email == user.email).scalar() is not None
+    user = UsersModel.from_json(request.get_json())  #Get User
+    #Verify if email exist in db
+    exists = db.session.query(UsersModel).filter(UsersModel.email == user.email).scalar() is not None
 
     if exists:
         return 'Duplicated mail', 409
@@ -49,6 +44,7 @@ def register():
             # Add User to db
             db.session.add(user)
             db.session.commit()
+            sent = sendMail([user.email], 'Welcome', 'register', user=user)
         except Exception as error:
             db.session.rollback()
             return str(error), 409
