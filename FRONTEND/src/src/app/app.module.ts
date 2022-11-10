@@ -2,14 +2,14 @@ import { NgModule ,NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core
 import { BrowserModule } from '@angular/platform-browser';
 import {HttpClientModule} from  '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
+import {FormsModule, ReactiveFormsModule } from "@angular/forms"
 
 //Components
 import { AppComponent } from './app.component';
 import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegistroComponent } from './pages/registro/registro.component';
-import { FootComponent } from './components/foot/foot.component';
-import { PagComponent } from './components/pag/pag.component';
+
 import { ViewPoemasComponent } from './components/view-poemas/view-poemas.component';
 import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
@@ -21,7 +21,10 @@ import { UsersService } from './services/users.service';
 import { PoemsService } from './services/poems.service';
 import { ReviewsService } from './services/reviews.service';
 import { LoginService } from './services/login.service';
-import { AppbarComponent } from './components/appbar/appbar.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -29,20 +32,19 @@ import { AppbarComponent } from './components/appbar/appbar.component';
     HomeComponent,
     LoginComponent,
     RegistroComponent,
-    FootComponent,
-    PagComponent,
     ViewPoemasComponent,
     UsuarioComponent,
     UsuariosComponent,
     AbmUsuarioComponent,
     ViewUsuariosComponent,
-    AppbarComponent,
-   
+    NavbarComponent,   
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [PoemsService,
               UsersService,

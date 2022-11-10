@@ -1,3 +1,29 @@
+
 <div class="py-5 text-center">
-    <h2>{{tipoOperacion}} usuario {{user_id}}</h2>
+    <div class="card text-center">
+        <div class="card-header">
+          <h5 *ngIf="tipoOperacion == '1'" class="card-title">Modo Editar</h5>
+          <h5 *ngIf="tipoOperacion == '2'" class="card-title">Modo Ver</h5>
+          <h5 *ngIf="tipoOperacion == '3'" class="card-title">Modo Eliminar</h5>
+        </div>
+        <div class="card-body">
+
+          
+
+          <p class="card-text">{{user.email}}</p>
+          <p *ngIf="user.admin" class="card-text">admin</p>
+          <p *ngIf="!user.admin" class="card-text">no admin</p>
+
+
+
+          
+
+        </div>
+        <div class="card-footer text-muted">
+          <button *ngIf="tipoOperacion == '1'" type="button" (click)="admin()" class="btn btn-warning">Cambiar permisos</button>
+          <button *ngIf="tipoOperacion == '3'" type="button" (click)="delete()" class="btn btn-danger">Eliminar</button>
+          <a href="usuarios" class="btn btn-success">Ir a usuarios</a>
+        </div>
+      </div>
+
 </div>

@@ -24,7 +24,8 @@ def login():
         data = {
             'id': str(user.id),
             'email': user.email,
-            'access_token': access_token
+            'access_token': access_token,
+            'admin': user.admin
         }
 
         return data, 200

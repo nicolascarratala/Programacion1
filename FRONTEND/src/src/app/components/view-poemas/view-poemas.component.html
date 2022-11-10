@@ -1,19 +1,14 @@
-<body>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div *ngFor="let poema of arrayPoemas">
-            <div class="col">
-                
-            <div class="card">
-                
-                <div class="card-body">
 
-                    <h5>{{poema.title}}</h5>
-             
-                    <p class="card-text multi-line" >{{poema.content}}</p>
-                   
-                </div>
-            </div> 
-            </div>
+<div style="height: 100vh; width: 100vw; margin-top: 100px; display: flex; flex-direction: column; align-items: center;" class="row row-cols-1 row-cols-md-4 g-4">
+
+    <div *ngFor="let poema of arrayPoemas" class="col" style="display: flex; flex-direction: column; align-items: center;">
+      <div style="width: 300px; " class="card">
+        <img style="width: 100%;" src="https://pbs.twimg.com/media/DwoJ4C7X0AAr0BV?format=jpg&name=large" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">{{poema.title}}</h5>
+          <p class="card-text">{{poema.content}}</p>
         </div>
+      </div>
     </div>
-</body>
+    
+</div>

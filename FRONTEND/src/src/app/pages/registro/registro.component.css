@@ -29,7 +29,7 @@ div.form-header{
   .form {
     z-index: 15;
     position: relative;
-    background: #FFFFFF;
+    background: #ff7c7c;
     width: 600px;
     border-radius: 4px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);

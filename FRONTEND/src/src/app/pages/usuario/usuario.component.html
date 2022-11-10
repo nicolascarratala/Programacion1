@@ -1,13 +1,9 @@
-<app-header></app-header>
+<app-navbar></app-navbar>
+<br><br><br>
+<div class="container">
+    <!-- Componente vistas de usuario -->
+    <app-abm-usuario [tipoOperacion]="tipo_op" [user_id]="usuario_id" [user_name]="usuario_id "></app-abm-usuario>
+    
+</div>
 
-<main class="bg-light" style="min-height: 80vh;">
-    <div class="container">
-        <!-- Componente vistas de usuario -->
-        <app-abm-usuario [tipoOperacion]="tipo_op" [user_id]="usuario_id"></app-abm-usuario>
-        {{usuario_id}}
-    </div>
-  <br>
-</main>
 
-<!-- Componente footer -->
-<app-foot></app-foot>

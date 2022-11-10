@@ -26,8 +26,8 @@ export class ViewUsuariosComponent implements OnInit {
 
   }
 
-  abmUser(id:any, alta:string) {
-    this.router.navigateByUrl('/usuario/'+ id +'/' +alta);
+  abmUser(id:any, action:string) {
+    this.router.navigateByUrl('/usuario/'+ id +'/' +action);
   }
 
 }
