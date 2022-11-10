@@ -16,13 +16,15 @@ export class AbmUsuarioComponent implements OnInit {
   constructor(
     private UsersService: UsersService,
     private router: Router
-  ) { }
+    ) { }
 
   ngOnInit(): void {
     this.UsersService.getUser(this.user_id).subscribe((data:any) =>{
       console.log('JSON data: ', data);
       this.user = data;
     })
+ 
+
   }
 
   admin(): void {
