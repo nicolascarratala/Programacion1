@@ -16,8 +16,8 @@ const routes: Routes = [
   { path:'registro', component: RegistroComponent},
   { path:'usuario/:id/:tipo_op', component: UsuarioComponent, canActivate:[AuthsessionGuard]},
   { path:'usuarios', component: UsuariosComponent, canActivate:[AuthsessionGuard]},
-  { path:'poem/:id/:tipo_op', component: PoemComponent, canActivate:[AuthsessionGuard]},
-  { path:'poems', component: PoemsComponent, canActivate:[AuthsessionGuard]},
+  { path:'poema/:id/:tipo_op', component: PoemComponent, canActivate:[AuthsessionGuard]},
+  { path:'poemas', component: PoemsComponent, canActivate:[AuthsessionGuard]},
   { path: '**', component: DefaultComponent }
 ];
 

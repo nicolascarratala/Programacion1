@@ -1,14 +1,12 @@
-
-<div style="height: 100vh; width: 100vw; margin-top: 100px; display: flex; flex-direction: column; align-items: center;" class="row row-cols-1 row-cols-md-4 g-4">
-
-    <div *ngFor="let poema of arrayPoemas" class="col" style="display: flex; flex-direction: column; align-items: center;">
-      <div style="width: 300px; " class="card">
-        <img style="width: 100%;" src="https://pbs.twimg.com/media/DwoJ4C7X0AAr0BV?format=jpg&name=large" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title">{{poema.title}}</h5>
-          <p class="card-text">{{poema.content}}</p>
-        </div>
-      </div>
-    </div>
-    
-</div>
+<br><br><br>
+  <ol style="margin-top: 20px;" class="list-group list-group-flush border-bottom scrollarea" *ngFor="let poe of arrayPoemas">
+      <li href="#" class="list-group-item list-group-item-action d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">{{poe.id}}</div>
+            {{poe.id}}
+          </div>
+          <a class="btn btn-warning" type="button" routerLink="/poema/{{poe.id}}/1" ><i class="fa-solid fa-pen-to-square"></i></a>
+          <a class="btn btn-success" type="button" routerLink="/poema/{{poe.id}}/2" ><i class="fa-solid fa-eye" ></i></a>
+          <a class="btn btn-danger" type="button" routerLink="/poema/{{poe.id}}/3" ><i class="fa-solid fa-trash" ></i></a>
+        </li>
+  </ol>

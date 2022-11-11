@@ -25,8 +25,6 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { AbmPoemasComponent } from './components/abm-poemas/abm-poemas.component';
 import { PoemsComponent } from './pages/poems/poems.component';
 import { PoemComponent } from './pages/poem/poem.component';
-import { ViewPoemsComponent } from './components/view-poems/view-poems.component';
-
 
 
 
@@ -45,7 +43,7 @@ import { ViewPoemsComponent } from './components/view-poems/view-poems.component
     AbmPoemasComponent,
     PoemsComponent,
     PoemComponent,
-    ViewPoemsComponent,   
+
   ],
   imports: [
     BrowserModule,

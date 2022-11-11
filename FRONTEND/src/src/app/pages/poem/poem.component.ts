@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-poem',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PoemComponent implements OnInit {
 
-  constructor() { }
+  poemas_id!: string;
+  tipo_op!: string;
+
+
+  constructor( private route:ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.poemas_id = this.route.snapshot.paramMap.get('id') || '';
+    this.tipo_op = this.route.snapshot.paramMap.get('tipo_op') || '';
   }
 
 }
