@@ -1,0 +1,53 @@
+<nav class="navbar navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Poemas</a>
+      
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar" aria-labelledby="offcanvasDarkNavbarLabel">
+        
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasDarkNavbarLabel">Menú</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+
+        <div class="offcanvas-body">
+
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            
+            <li *ngIf="isToken" class="nav-item">
+              <h3  style="color: white;">{{email}}</h3>
+              <h3 *ngIf="isAdmin" style="color: white;">admin</h3>
+              <h3 *ngIf="!isAdmin" style="color: white;">:)</h3>
+          </li>
+           
+            <li *ngIf="!isToken" class="nav-item">
+                <a href="login" class="btn btn-dark">Iniciar sesión</a>
+            </li>
+            <li *ngIf="!isToken" class="nav-item">
+              <a href="registro" class="btn btn-dark">Registro</a>
+          </li>
+          <li *ngIf="isToken" class="nav-item">
+            <button (click)="cerrarSesion()"  class="btn btn-dark">Cerrar sesión</button>
+          </li>
+            <li *ngIf="isAdmin && isToken" class="nav-item">
+                <a href="usuarios" class="btn btn-dark">Usuarios</a>
+            </li>
+            <li *ngIf="isAdmin && isToken" class="nav-item">
+              <a href="poemas" class="btn btn-dark">Poemas</a>
+          </li>
+          <li *ngIf="isAdmin && isToken" class="nav-item">
+              <a href="nuevoPoema" class="btn btn-dark">Nuevo poema</a>
+          </li>
+            
+            
+          </ul>
+        
+        </div>
+      </div>
+    </div>
+  </nav>
+
+ 
