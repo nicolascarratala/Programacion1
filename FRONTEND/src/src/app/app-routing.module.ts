@@ -7,6 +7,8 @@ import { UsuarioComponent } from './pages/usuario/usuario.component';
 import { DefaultComponent } from './pages/default/default.component';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { AuthsessionGuard } from './guards/authsession.guard';
+import { PoemsComponent } from './pages/poems/poems.component';
+import { PoemComponent } from './pages/poem/poem.component';
 const routes: Routes = [
   { path:'', component: HomeComponent},
   { path:'home', component: HomeComponent},
@@ -14,6 +16,8 @@ const routes: Routes = [
   { path:'registro', component: RegistroComponent},
   { path:'usuario/:id/:tipo_op', component: UsuarioComponent, canActivate:[AuthsessionGuard]},
   { path:'usuarios', component: UsuariosComponent, canActivate:[AuthsessionGuard]},
+  { path:'poem/:id/:tipo_op', component: PoemComponent, canActivate:[AuthsessionGuard]},
+  { path:'poems', component: PoemsComponent, canActivate:[AuthsessionGuard]},
   { path: '**', component: DefaultComponent }
 ];
 

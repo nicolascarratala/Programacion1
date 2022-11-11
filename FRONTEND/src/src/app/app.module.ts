@@ -22,6 +22,10 @@ import { PoemsService } from './services/poems.service';
 import { ReviewsService } from './services/reviews.service';
 import { LoginService } from './services/login.service';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AbmPoemasComponent } from './components/abm-poemas/abm-poemas.component';
+import { PoemsComponent } from './pages/poems/poems.component';
+import { PoemComponent } from './pages/poem/poem.component';
+import { ViewPoemsComponent } from './components/view-poems/view-poems.component';
 
 
 
@@ -37,7 +41,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     UsuariosComponent,
     AbmUsuarioComponent,
     ViewUsuariosComponent,
-    NavbarComponent,   
+    NavbarComponent,
+    AbmPoemasComponent,
+    PoemsComponent,
+    PoemComponent,
+    ViewPoemsComponent,   
   ],
   imports: [
     BrowserModule,

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { IPutUser } from '../interfaces/users';
 
 @Injectable({
   providedIn: 'root'
@@ -11,33 +12,32 @@ export class UsersService {
     private httpClient: HttpClient
   ) { }
 
-  getUsers(token?: string) {
+  getUsers() {
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
     
-    return this.httpClient.get("users", { headers: headers})
+    return this.httpClient.get("apiusers", { headers: headers})
   }
 
   getUser(id: string) {
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.get("user/"+id, { headers: headers})
+    return this.httpClient.get("apiuser/"+id, { headers: headers})
   }
-
-  putUser( id: string, body:any ) {
+  putUser( id: string, body:IPutUser ) {
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.put('user/' + id.toString(), body, {headers: headers})
+    return this.httpClient.put('apiuser/' + id.toString(), body, {headers: headers})
   }
 
   delUser(id: string) {
     let headers = new HttpHeaders()
     .set('Content-Type', 'application/json')
     .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.delete('user/' + id.toString(), {headers: headers})
+    return this.httpClient.delete('apiuser/' + id.toString(), {headers: headers})
   }
 
 /* 

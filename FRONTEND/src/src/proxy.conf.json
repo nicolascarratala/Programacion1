@@ -1,34 +1,42 @@
 {
-  "/users": {
+  "/apiusers": {
       "target": "http://127.0.0.1:7000",
       "secure": false,
       "logLevel": "debug",
       "pathRewrite": {
-          "^/users": "/users"
+          "^/apiusers": "/users"
       }
 },
-"/user/*": {
+"/apiuser/*": {
       "target": "http://127.0.0.1:7000",
       "secure": false,
       "logLevel": "debug",
       "pathRewrite": {
-          "^/user/": "/user/"
+          "^/apiuser/": "/user/"
       }
 },
-"/loginauth": {
+"/apilogin": {
   "target": "http://127.0.0.1:7000",
   "secure": false,
   "logLevel": "debug",
   "pathRewrite": {
-      "^/loginauth": "/auth/login"
+      "^/apilogin": "/auth/login"
   }
 },
-"/poems": {
+"/apipoems": {
     "target": "http://127.0.0.1:7000",
     "secure": false,
     "logLevel": "debug",
     "pathRewrite": {
-        "^/poems": "/poems"
+        "^/apipoems": "/poems"
     }
-  }
+  },
+  "/apipoem/*": {
+    "target": "http://127.0.0.1:7000",
+    "secure": false,
+    "logLevel": "debug",
+    "pathRewrite": {
+        "^/apipoem/": "/poem/"
+    }
+},
 }
