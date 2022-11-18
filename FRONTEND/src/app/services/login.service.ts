@@ -12,10 +12,6 @@ export class LoginService {
   ) { }
 
   postLogin( body: any) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    
-    return this.httpClient.post(this.url, body, { headers: headers})
+    return this.httpClient.post(this.url, body)
   }
 }

@@ -1,9 +1,10 @@
 import { NgModule ,NO_ERRORS_SCHEMA, CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {HttpClientModule} from  '@angular/common/http';
+import {HttpClientModule, HTTP_INTERCEPTORS} from  '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import {FormsModule, ReactiveFormsModule } from "@angular/forms"
-import { NgParticlesModule } from "ng-particles";
+import { AuthInterceptor } from './interceptors/auth.iterceptor/auth.iterceptor';
+
 
 //Components
 import { AppComponent } from './app.component';
@@ -28,6 +29,8 @@ import { AbmPoemasComponent } from './components/abm-poemas/abm-poemas.component
 import { PoemsComponent } from './pages/poems/poems.component';
 import { PoemComponent } from './pages/poem/poem.component';
 import { NewPoemComponent } from './pages/new-poem/new-poem.component';
+import { NgParticlesModule } from "ng-particles";
+import { GameComponent } from './pages/game/game.component';
 
 
 
@@ -47,7 +50,8 @@ import { NewPoemComponent } from './pages/new-poem/new-poem.component';
     PoemsComponent,
     PoemComponent,
     ViewPoemasCardsComponent,
-    NewPoemComponent
+    NewPoemComponent,
+    GameComponent,
   ],
   imports: [
     BrowserModule,
@@ -60,7 +64,9 @@ import { NewPoemComponent } from './pages/new-poem/new-poem.component';
   providers: [PoemsService,
               UsersService,
               LoginService,
-              ReviewsService],
+              ReviewsService,
+              { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+          ],
   bootstrap: [AppComponent],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA,

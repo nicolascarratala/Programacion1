@@ -14,7 +14,7 @@ export class ViewPoemasComponent implements OnInit {
 
   ngOnInit(): void {
     this.PoemsService.getPoems().subscribe((data:any) =>{
-      console.log('JSON data: ', data);
+      
       this.arrayPoemas = data.poems;
     })
 

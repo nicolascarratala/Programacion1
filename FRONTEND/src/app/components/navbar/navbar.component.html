@@ -24,13 +24,13 @@
           </li>
            
             <li *ngIf="!isToken" class="nav-item">
-                <a href="login" class="btn btn-dark">Iniciar sesión</a>
+                <a href="login" class="btn btn-success">Iniciar sesión</a>
             </li>
             <li *ngIf="!isToken" class="nav-item">
               <a href="registro" class="btn btn-dark">Registro</a>
           </li>
           <li *ngIf="isToken" class="nav-item">
-            <button (click)="cerrarSesion()"  class="btn btn-dark">Cerrar sesión</button>
+            <button (click)="cerrarSesion()"  class="btn btn-danger">Cerrar sesión</button>
           </li>
             <li *ngIf="isAdmin && isToken" class="nav-item">
                 <a href="usuarios" class="btn btn-dark">Usuarios</a>
@@ -42,6 +42,9 @@
               <a href="nuevoPoema" class="btn btn-dark">Nuevo poema</a>
           </li>
             
+          <li *ngIf="isAdmin && isToken" class="nav-item">
+            <a href="game" class="btn btn-dark">Game XD</a>
+        </li>
             
           </ul>
         

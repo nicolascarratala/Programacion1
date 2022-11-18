@@ -13,43 +13,29 @@ export class PoemsService {
   ) { }
 
   getPoems() {
-   let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    
-    return this.httpClient.get("apipoems", { headers: headers})
+   
+    return this.httpClient.get("apipoems")
   }
 
-  getPoem(id: number) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    
-    return this.httpClient.get("apipoem/"+id, { headers: headers})
+  getPoem(id: string) {
+   
+    return this.httpClient.get("apipoem/"+id)
   }
 
   postPoem( body: any ) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
+ 
 
-    return this.httpClient.post("apipoems",body, { headers: headers})
+    return this.httpClient.post("apipoems",body)
   }
 
   putPoem(id: string, body: any ) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
 
-    return this.httpClient.put('apipoem/' + id, body, {headers: headers})
+    return this.httpClient.put('apipoem/' + id, body)
   }
 
   delPoem( id:string) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-
-    return this.httpClient.delete('apipoem/' + id, {headers: headers})
+ 
+    return this.httpClient.delete('apipoem/' + id)
   }
 
 }

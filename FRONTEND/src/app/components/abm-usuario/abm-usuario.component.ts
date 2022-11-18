@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-abm-usuario',
@@ -20,7 +21,7 @@ export class AbmUsuarioComponent implements OnInit {
 
   ngOnInit(): void {
     this.UsersService.getUser(this.user_id).subscribe((data:any) =>{
-      console.log('JSON data: ', data);
+     
       this.user = data;
     })
  
@@ -30,12 +31,24 @@ export class AbmUsuarioComponent implements OnInit {
   admin(): void {
     if(!this.user.admin){
       this.UsersService.putUser(this.user_id, {"admin": 1}).subscribe((data:any) =>{
-        alert("Usuario editado")
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuario editado',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.router.navigate(['/usuarios'])
       })
     }else{
       this.UsersService.putUser(this.user_id, {"admin": 0}).subscribe((data:any) =>{
-        alert("Usuario editado")
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          title: 'Usuario editado',
+          showConfirmButton: false,
+          timer: 1500
+        })
         this.router.navigate(['/usuarios'])
       })
     }
@@ -43,7 +56,13 @@ export class AbmUsuarioComponent implements OnInit {
 
   delete(): void {
     this.UsersService.delUser(this.user_id).subscribe((data:any) =>{
-      alert("Usuario Eliminado")
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Usuario eliminado',
+        showConfirmButton: false,
+        timer: 1500
+      })
       this.router.navigate(['/usuarios'])
     })
   }

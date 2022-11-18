@@ -20,10 +20,13 @@
     "@angular/platform-browser": "^14.2.0",
     "@angular/platform-browser-dynamic": "^14.2.0",
     "@angular/router": "^14.2.0",
+    "aframe": "^1.3.0",
     "bootstrap": "^5.2.2",
     "ng-particles": "^3.5.3",
     "rxjs": "~7.5.0",
+    "sweetalert2": "^11.6.8",
     "tslib": "^2.3.0",
+    "tsparticles": "^2.5.3",
     "tsparticles-engine": "^2.5.2",
     "zone.js": "~0.11.4"
   },

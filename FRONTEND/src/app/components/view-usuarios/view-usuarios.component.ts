@@ -19,7 +19,7 @@ export class ViewUsuariosComponent implements OnInit {
 
   ngOnInit(): void {
     this.UsersService.getUsers().subscribe((data:any) =>{
-      console.log('JSON data: ', data);
+     
       this.arrayUsuarios = data.users;
     })
  

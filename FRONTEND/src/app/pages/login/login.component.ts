@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/services/login.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-login',
@@ -42,7 +43,13 @@ email = '';
    
     this.LoginService.postLogin({"email":email, "password":password})
     .subscribe((data:any) =>{
-      console.log(data)
+      Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Ya está logueado',
+        showConfirmButton: false,
+        timer: 1500
+      })
       window.sessionStorage.setItem("token",data.access_token)
       window.sessionStorage.setItem("email",data.email)
       window.sessionStorage.setItem("id",data.id)
@@ -60,7 +67,12 @@ email = '';
                                  
        this.iniciarSession(email, password);
        }else{
-        alert("Formulario invalido")
+        Swal.fire({
+          title: 'Error!',
+          text: 'Formulario invalido',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
     }
   }
 }

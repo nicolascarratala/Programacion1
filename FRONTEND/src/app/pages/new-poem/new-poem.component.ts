@@ -30,7 +30,6 @@ export class NewPoemComponent implements OnInit {
   newPoem( body:any ){
     this.PoemsService.postPoem({"title":body.title, "content":body.content, "userID":body.userID})
     .subscribe((data:any) =>{
-      console.log(data)
       this.router.navigate(['/', 'home'])
     })
 

@@ -12,7 +12,7 @@ class Poem(Resource):
     @jwt_required
     def get(self, id):
         poem = db.session.query(PoemsModel).get_or_404(id)
-        return poem.to_json()
+        return poem.to_json(), 200
 
     #Modificar recurso
     @admin_required

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/services/users.service';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-registro',
@@ -34,7 +35,13 @@ register( body:any){
    
   this.UserService.postUser(body)
   .subscribe((data:any) =>{
-    console.log(data)
+    Swal.fire({
+      position: 'top-end',
+      icon: 'success',
+      title: 'Registrado con éxito',
+      showConfirmButton: false,
+      timer: 1500
+    })
     this.router.navigate(['/', "home"])
     
   })
@@ -49,7 +56,12 @@ submit(){
      let repeatpassword = this.registerForm.value.repeatpassword;
 
       if(password != repeatpassword){
-        alert("Formulario invalido")
+        Swal.fire({
+          title: 'Error!',
+          text: 'Contraseñas no coinciden',
+          icon: 'error',
+          confirmButtonText: 'Cool'
+        })
       }else{
         this.register({
           "firstname": firstname,
@@ -60,7 +72,12 @@ submit(){
       }
                               
      }else{
-      alert("Formulario invalido")
+      Swal.fire({
+        title: 'Error!',
+        text: 'Formulario invalido',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
   }
 }
 

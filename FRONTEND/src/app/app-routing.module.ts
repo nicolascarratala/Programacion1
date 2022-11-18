@@ -10,6 +10,7 @@ import { AuthsessionGuard } from './guards/authsession.guard';
 import { PoemsComponent } from './pages/poems/poems.component';
 import { PoemComponent } from './pages/poem/poem.component';
 import { NewPoemComponent } from './pages/new-poem/new-poem.component';
+import { GameComponent } from './pages/game/game.component';
 const routes: Routes = [
   { path:'', component: HomeComponent},
   { path:'home', component: HomeComponent},
@@ -20,6 +21,7 @@ const routes: Routes = [
   { path:'poema/:id/:tipo_op', component: PoemComponent, canActivate:[AuthsessionGuard]},
   { path:'poemas', component: PoemsComponent, canActivate:[AuthsessionGuard]},
   { path:'nuevoPoema', component: NewPoemComponent, canActivate:[AuthsessionGuard]},
+  { path:'game', component: GameComponent, canActivate:[AuthsessionGuard]},
   { path: '**', component: DefaultComponent }
 ];
 
