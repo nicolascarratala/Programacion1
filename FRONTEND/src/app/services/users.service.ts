@@ -13,38 +13,28 @@ export class UsersService {
   ) { }
 
   getUsers() {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
+   
     
-    return this.httpClient.get("apiusers", { headers: headers})
+    return this.httpClient.get("apiusers")
   }
 
   getUser(id: string) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.get("apiuser/"+id, { headers: headers})
+   
+    return this.httpClient.get("apiuser/"+id)
   }
   putUser( id: string, body:IPutUser ) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.put('apiuser/' + id.toString(), body, {headers: headers})
+    
+    return this.httpClient.put('apiuser/' + id.toString(), body)
   }
 
   delUser(id: string) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json')
-    .set('Authorization', 'Bearer ' + window.sessionStorage.getItem("token"))
-    return this.httpClient.delete('apiuser/' + id.toString(), {headers: headers})
+
+    return this.httpClient.delete('apiuser/' + id.toString())
   }
 
   postUser( body: any ) {
-    let headers = new HttpHeaders()
-    .set('Content-Type', 'application/json') 
-    
-    return this.httpClient.post("apiregister", body, {headers: headers})
+  
+    return this.httpClient.post("apiregister", body)
   }
   
   

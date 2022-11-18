@@ -22,29 +22,45 @@ export class NewPoemComponent implements OnInit {
    this.poemForm = this.formBuider.group({
     title: ['',Validators.required],
     content: ['',Validators.required],
+    points: ['',Validators.required],
 
    })
 
   }
 
   newPoem( body:any ){
-    this.PoemsService.postPoem({"title":body.title, "content":body.content, "userID":body.userID})
+    this.PoemsService.postPoem(body)
     .subscribe((data:any) =>{
       this.router.navigate(['/', 'home'])
     })
 
   }
 
+  getDecodedAccessToken(token:any): any {
+    try {
+      console.log(jwt_decode(token))
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
+
   submit(){
     
      if(this.poemForm.valid){
-       let title = this.poemForm.value.title;
-       let content = this.poemForm.value.content;
-   
+       let title :string = this.poemForm.value.title;
+       let content :string = this.poemForm.value.content;
+       let points : number = this.poemForm.value.points;
+       
+       console.log(this.getDecodedAccessToken(sessionStorage.getItem("token")))
                                  
-       this.newPoem({"title": title, "content" : content, "userID": sessionStorage.getItem("id")});
+       this.newPoem({"title": title, "content" : content, "points": Number(points), "userID": 1});
        }else{
         alert("Formulario invalido")
     }
   }
 }
+function jwt_decode(token: any): any {
+  throw new Error('Function not implemented.');
+}
+

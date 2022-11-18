@@ -20,6 +20,7 @@ export class ViewPoemasCardsComponent implements OnInit {
   ngOnInit(): void {
     this.PoemsService.getPoems().subscribe((data:any) =>{
       this.arrayPoemas = data.poems;
+      console.log(this.arrayPoemas)
     })
 
 }
