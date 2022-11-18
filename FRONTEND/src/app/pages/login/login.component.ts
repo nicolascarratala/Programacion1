@@ -51,8 +51,6 @@ email = '';
         timer: 1500
       })
       window.sessionStorage.setItem("token",data.access_token)
-      window.sessionStorage.setItem("email",data.email)
-      window.sessionStorage.setItem("id",data.id)
       window.sessionStorage.setItem("admin",data.admin)
       this.router.navigate(['/'])
       

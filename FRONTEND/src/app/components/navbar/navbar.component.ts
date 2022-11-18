@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import jwt_decode from 'jwt-decode';
 
 @Component({
   selector: 'app-navbar',
@@ -15,10 +16,17 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router) { }
 
   ngOnInit(): void {
-    this.email = sessionStorage.getItem("email");
+    this.email = this.getDecodedAccessToken(sessionStorage.getItem("token")).email;
   }
 
 
+  getDecodedAccessToken(token:any): any {
+    try {
+      return jwt_decode(token);
+    } catch(Error) {
+      return null;
+    }
+  }
 
   get isToken() {
     return sessionStorage.getItem("token") || undefined
@@ -35,9 +43,7 @@ export class NavbarComponent implements OnInit {
 
   cerrarSesion(){
     sessionStorage.removeItem("token")
-    sessionStorage.removeItem("email")
     sessionStorage.removeItem("admin")
-    sessionStorage.removeItem("id")
     this.router.navigate(['/'])
   }
 
